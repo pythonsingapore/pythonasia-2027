@@ -39,9 +39,9 @@ npm run preview  # Preview the production build locally
 
 ## Accessibility
 
-The interface includes keyboard-operable controls, semantic landmarks, responsive navigation, visible focus states, and a reduced-motion mode. Decorative motion is hidden from assistive technology and must remain non-blocking.
+The interface includes keyboard-operable controls, semantic landmarks, responsive navigation, and visible focus states. Decorative motion is hidden from assistive technology and must remain non-blocking.
 
-When changing animations or layout, run both the test suite and production build. Please also check compact layouts and `prefers-reduced-motion` before opening a pull request.
+When changing animations or layout, run both the test suite and production build. Please also check that the full motion system remains smooth and non-blocking at compact widths before opening a pull request.
 
 ## Contributing
 

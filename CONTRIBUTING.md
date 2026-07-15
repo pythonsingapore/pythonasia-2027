@@ -25,7 +25,7 @@ For visual changes, include desktop and mobile evidence in the pull-request desc
 - Preserve the established conference identity and existing content unless the issue explicitly calls for copy changes.
 - Keep controls keyboard accessible and focus indicators visible.
 - Keep decorative artwork out of the accessibility tree.
-- Provide a complete static experience for people who prefer reduced motion.
+- Keep decorative motion non-interactive and non-blocking at desktop and compact widths.
 - Check for horizontal overflow at compact widths.
 
 ## Reporting conduct concerns
