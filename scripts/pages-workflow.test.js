@@ -14,6 +14,7 @@ test("Pages workflow tests, builds, uploads, and deploys main", async () => {
     "actions/configure-pages@v5",
     "actions/upload-pages-artifact@v4",
     "actions/deploy-pages@v4",
+    "pages: read",
     "pages: write",
     "id-token: write",
   ]) {
