@@ -16,6 +16,7 @@ import {
 import { ConductPage, SchedulePage, SpeakersPage } from "./EventPages.jsx";
 import { OpeningArtifactFlight } from "./motion/OpeningArtifactFlight.jsx";
 import { useLandingMotion } from "./motion/useLandingMotion.js";
+import { sitePaths } from "./sitePaths.js";
 
 const processCards = [
   {
@@ -116,28 +117,28 @@ const connectionCards = [
     copy: "Follow conference updates and community announcements.",
     href: "https://www.linkedin.com/company/python-user-group-singapore/",
     icon: LinkedInIcon,
-    image: "/assets/card-bg-singapore-peranakan.webp",
+    image: sitePaths.asset("card-bg-singapore-peranakan.webp"),
   },
   {
     label: "Facebook",
     copy: "Join the Python Singapore community group.",
     href: "https://www.facebook.com/groups/pythonsg/",
     icon: FacebookIcon,
-    image: "/assets/card-bg-malaysia-batik-rainforest.webp",
+    image: sitePaths.asset("card-bg-malaysia-batik-rainforest.webp"),
   },
   {
     label: "Mailing List",
     copy: "Get longer-form notes and community calls.",
     href: "https://groups.google.com/forum/#!forum/python-sg",
     icon: Mails,
-    image: "/assets/card-bg-taiwan-alishan.webp",
+    image: sitePaths.asset("card-bg-taiwan-alishan.webp"),
   },
   {
     label: "Luma",
     copy: "Track upcoming meetups and Python events.",
     href: "https://luma.com/pugs",
     icon: CalendarDays,
-    image: "/assets/card-bg-japan-lantern-street.webp",
+    image: sitePaths.asset("card-bg-japan-lantern-street.webp"),
   },
 ];
 
@@ -402,7 +403,7 @@ function Header({ activePage = "home" }) {
 
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label="Python Asia 2027 home" onClick={close}>
+      <a className="brand" href={sitePaths.href("/")} aria-label="Python Asia 2027 home" onClick={close}>
         <span className="brand-copy">Python Asia 2027</span>
       </a>
 
@@ -417,19 +418,19 @@ function Header({ activePage = "home" }) {
       </button>
 
       <nav className={open ? "nav-links is-open" : "nav-links"} aria-label="Primary navigation">
-        <a className={linkClass("home")} href="/" onClick={close}>
+        <a className={linkClass("home")} href={sitePaths.href("/")} onClick={close}>
           Home
         </a>
-        <a className={linkClass("schedule")} href="/schedule" onClick={close}>
+        <a className={linkClass("schedule")} href={sitePaths.href("/schedule")} onClick={close}>
           Schedule
         </a>
-        <a className={linkClass("speakers")} href="/speakers" onClick={close}>
+        <a className={linkClass("speakers")} href={sitePaths.href("/speakers")} onClick={close}>
           Speakers
         </a>
-        <a className={linkClass("coc")} href="/coc" onClick={close}>
+        <a className={linkClass("coc")} href={sitePaths.href("/coc")} onClick={close}>
           Code of Conduct
         </a>
-        <a className="header-cta" href="/#updates" onClick={close}>
+        <a className="header-cta" href={sitePaths.href("/#updates")} onClick={close}>
           Get Updates <ArrowRight size={18} />
         </a>
       </nav>
@@ -472,8 +473,8 @@ function FireworksBackground() {
     <video
       ref={videoRef}
       className="sky-video"
-      src="/assets/hero-fireworks-silent.mp4"
-      poster="/assets/hero-fireworks-poster.webp"
+      src={sitePaths.asset("hero-fireworks-silent.mp4")}
+      poster={sitePaths.asset("hero-fireworks-poster.webp")}
       autoPlay
       muted
       loop
@@ -504,12 +505,12 @@ function AppShell({ children, showLandingScene = true, openingArtifact = null, s
       <div className="sky-tint" aria-hidden="true" />
       {showLandingScene ? (
         <div className="motion-artifact-clip" aria-hidden="true">
-          <img data-motion="bloom" className="cherry-bloom-layer" src="/assets/cherry-blossom-bloom.webp" alt="" decoding="async" aria-hidden="true" />
-          <img data-motion="merlion" className="merlion-side-layer" src="/assets/merlion-side-layer.webp" alt="" decoding="async" aria-hidden="true" />
-          <img data-motion="cranes" className="floating-cranes" src="/assets/paper-cranes.webp" alt="" decoding="async" aria-hidden="true" />
+          <img data-motion="bloom" className="cherry-bloom-layer" src={sitePaths.asset("cherry-blossom-bloom.webp")} alt="" decoding="async" aria-hidden="true" />
+          <img data-motion="merlion" className="merlion-side-layer" src={sitePaths.asset("merlion-side-layer.webp")} alt="" decoding="async" aria-hidden="true" />
+          <img data-motion="cranes" className="floating-cranes" src={sitePaths.asset("paper-cranes.webp")} alt="" decoding="async" aria-hidden="true" />
         </div>
       ) : (
-        <img className="event-artifact-layer" src="/assets/asia-party-footer.webp" alt="" decoding="async" aria-hidden="true" />
+        <img className="event-artifact-layer" src={sitePaths.asset("asia-party-footer.webp")} alt="" decoding="async" aria-hidden="true" />
       )}
       {openingArtifact ? <OpeningArtifactFlight artifactId={openingArtifact} /> : null}
       {children}
@@ -528,9 +529,9 @@ function SiteFooter() {
             maintainers, data practitioners, and open source teams across the region.
           </p>
           <div className="footer-links">
-            <a href="/coc">Code of Conduct</a>
-            <a href="/speakers">Speakers</a>
-            <a href="/schedule">Schedule</a>
+            <a href={sitePaths.href("/coc")}>Code of Conduct</a>
+            <a href={sitePaths.href("/speakers")}>Speakers</a>
+            <a href={sitePaths.href("/schedule")}>Schedule</a>
           </div>
         </section>
 
@@ -688,7 +689,7 @@ function LandingPage() {
           <div className="community-copy">
             <h2>A living map of Python communities.</h2>
           </div>
-          <img data-motion="map" className="asia-map" src="/assets/asia-connectivity.webp" loading="lazy" decoding="async" width="1100" height="825" alt="Dotted map of Asia with conference connection arcs" />
+          <img data-motion="map" className="asia-map" src={sitePaths.asset("asia-connectivity.webp")} loading="lazy" decoding="async" width="1100" height="825" alt="Dotted map of Asia with conference connection arcs" />
           <div data-motion="stats" className="stats-grid" aria-label="Conference statistics">
             {stats.map(([value, label]) => (
               <div className="stat" key={value}>
@@ -737,7 +738,7 @@ function LandingPage() {
 }
 
 export function App() {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const path = sitePaths.route(window.location.pathname);
   const routes = {
     "/schedule": { title: "Schedule", page: <SchedulePage /> },
     "/speakers": { title: "Speakers", page: <SpeakersPage /> },

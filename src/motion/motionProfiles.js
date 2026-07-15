@@ -1,3 +1,5 @@
+import { sitePaths } from "../sitePaths.js";
+
 export const LANDING_MEDIA = {
   desktop: "(min-width: 981px) and (prefers-reduced-motion: no-preference)",
   compact: "(max-width: 980px) and (prefers-reduced-motion: no-preference)",
@@ -21,7 +23,7 @@ export const landingProfiles = {
 
 export const artifactDefinitions = {
   lantern: {
-    src: "/assets/floating-lantern-optimized.png",
+    src: sitePaths.asset("floating-lantern-optimized.png"),
     ease: "sine.inOut",
     drift: 28,
     rotation: 6,
@@ -29,7 +31,7 @@ export const artifactDefinitions = {
     durationMultiplier: 1,
   },
   "bubble-tea": {
-    src: "/assets/floating-bubble-tea.webp",
+    src: sitePaths.asset("floating-bubble-tea.webp"),
     ease: "back.out(1.25)",
     drift: 20,
     rotation: 10,
@@ -37,7 +39,7 @@ export const artifactDefinitions = {
     durationMultiplier: 0.86,
   },
   kimchi: {
-    src: "/assets/floating-kimchi.webp",
+    src: sitePaths.asset("floating-kimchi.webp"),
     ease: "power2.out",
     drift: 10,
     rotation: 3,

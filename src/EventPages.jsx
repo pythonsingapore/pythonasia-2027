@@ -17,33 +17,34 @@ import {
   Tag,
   UsersRound,
 } from "lucide-react";
+import { sitePaths } from "./sitePaths.js";
 
 const rooms = ["Main Hall", "Data Studio", "Community Room"];
 
 const culturalHoverTreatments = {
   data: {
-    image: "/assets/schedule-culture-india.webp",
+    image: sitePaths.asset("schedule-culture-india.webp"),
     desktop: "50% 60%",
     mobile: "50% 64%",
     detail: "50% 54%",
     detailMobile: "50% 58%",
   },
   education: {
-    image: "/assets/schedule-culture-indonesia.webp",
+    image: sitePaths.asset("schedule-culture-indonesia.webp"),
     desktop: "58% 48%",
     mobile: "60% 52%",
     detail: "57% 48%",
     detailMobile: "56% 50%",
   },
   korea: {
-    image: "/assets/schedule-culture-korea.webp",
+    image: sitePaths.asset("schedule-culture-korea.webp"),
     desktop: "34% 65%",
     mobile: "32% 67%",
     detail: "34% 56%",
     detailMobile: "34% 58%",
   },
   vietnam: {
-    image: "/assets/schedule-culture-vietnam.webp",
+    image: sitePaths.asset("schedule-culture-vietnam.webp"),
     desktop: "72% 46%",
     mobile: "76% 50%",
     detail: "72% 48%",
