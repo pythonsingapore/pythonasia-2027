@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
+    "build:pages": "vite build --base=/pythonasia-2027/ && node scripts/prepare-pages.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --test src/**/*.test.js"
+    "test": "node --test src/**/*.test.js src/*.test.js scripts/*.test.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
