@@ -7,22 +7,6 @@ import {
   getArtifactTravelDistance,
 } from "./motionProfiles.js";
 
-function useReducedMotion() {
-  const [reducedMotion, setReducedMotion] = useState(() => (
-    typeof window !== "undefined"
-      && window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ));
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const syncPreference = () => setReducedMotion(media.matches);
-    media.addEventListener("change", syncPreference);
-    return () => media.removeEventListener("change", syncPreference);
-  }, []);
-
-  return reducedMotion;
-}
-
 export function OpeningArtifactFlight({ artifactId }) {
   const scopeRef = useRef(null);
   const readyImagesRef = useRef(new Set());
@@ -31,7 +15,6 @@ export function OpeningArtifactFlight({ artifactId }) {
   const [visible, setVisible] = useState(true);
   const definition = artifactDefinitions[artifactId];
   const flightItems = definition ? getArtifactFlightItems(artifactId, false) : [];
-  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     mountedRef.current = true;
@@ -96,8 +79,8 @@ export function OpeningArtifactFlight({ artifactId }) {
       });
     };
 
-    media.add("(min-width: 981px) and (prefers-reduced-motion: no-preference)", () => animate(false));
-    media.add("(max-width: 980px) and (prefers-reduced-motion: no-preference)", () => animate(true));
+    media.add("(min-width: 981px)", () => animate(false));
+    media.add("(max-width: 980px)", () => animate(true));
 
     return () => {
       active = false;
@@ -105,7 +88,7 @@ export function OpeningArtifactFlight({ artifactId }) {
     };
   }, { scope: scopeRef, dependencies: [artifactId, loaded, visible] });
 
-  if (!definition || !visible || reducedMotion) return null;
+  if (!definition || !visible) return null;
 
   return (
     <div ref={scopeRef} className="event-opening-flight" data-opening-artifact={artifactId} aria-hidden="true">

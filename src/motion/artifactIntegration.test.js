@@ -24,11 +24,12 @@ test("GSAP uses viewport-relative pixel travel that clears each artifact", () =>
   assert.doesNotMatch(componentSource, /yPercent:\s*-item\.travelY/);
 });
 
-test("reduced motion avoids mounting high-priority flight images", () => {
-  assert.match(componentSource, /matchMedia\("\(prefers-reduced-motion: reduce\)"\)/);
-  assert.match(componentSource, /addEventListener\("change"/);
-  assert.match(componentSource, /removeEventListener\("change"/);
-  assert.match(componentSource, /if \(!definition \|\| !visible \|\| reducedMotion\) return null/);
+test("route flights animate at every motion preference", () => {
+  assert.doesNotMatch(componentSource, /prefers-reduced-motion/);
+  assert.doesNotMatch(componentSource, /useReducedMotion/);
+  assert.match(componentSource, /media\.add\("\(min-width: 981px\)"/);
+  assert.match(componentSource, /media\.add\("\(max-width: 980px\)"/);
+  assert.match(componentSource, /if \(!definition \|\| !visible\) return null/);
 });
 
 test("route flight waits for every artifact image to load and decode", () => {
