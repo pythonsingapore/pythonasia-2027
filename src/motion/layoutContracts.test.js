@@ -75,16 +75,8 @@ test("map and section bands cannot widen compact layouts", () => {
   );
 });
 
-test("reduced motion restores complete static compositions", () => {
-  const reduced = blockFor(css, "@media (prefers-reduced-motion: reduce)");
-  const motionRule = ruleFor(reduced, "[data-motion]", "opacity");
-  assert.equal(declaration(motionRule, "opacity"), "1 !important");
-  assert.doesNotMatch(motionRule, /(?:^|\n)\s*transform:/);
-  assert.equal(
-    declaration(ruleFor(reduced, ".cherry-bloom-layer,\n  .merlion-side-layer", "transform"), "transform"),
-    "translateX(-50%) !important",
-  );
-  assert.equal(declaration(ruleFor(reduced, ".event-opening-flight", "display"), "display"), "none");
+test("styles never suppress motion from the operating-system preference", () => {
+  assert.doesNotMatch(css, /prefers-reduced-motion/);
 });
 
 test("no-JS landing artwork has visible base states", () => {

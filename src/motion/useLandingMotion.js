@@ -143,9 +143,6 @@ export function useLandingMotion(scopeRef) {
       const media = gsap.matchMedia();
       media.add(LANDING_MEDIA.desktop, () => buildLandingScene(scope, landingProfiles.desktop));
       media.add(LANDING_MEDIA.compact, () => buildLandingScene(scope, landingProfiles.compact));
-      media.add(LANDING_MEDIA.reduced, () => {
-        gsap.set(scope.querySelectorAll("[data-motion]"), { clearProps: "all" });
-      });
 
       const refresh = () => ScrollTrigger.refresh();
       const map = select(scope, "map");

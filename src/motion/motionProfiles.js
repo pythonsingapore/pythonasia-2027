@@ -1,9 +1,8 @@
 import { sitePaths } from "../sitePaths.js";
 
 export const LANDING_MEDIA = {
-  desktop: "(min-width: 981px) and (prefers-reduced-motion: no-preference)",
-  compact: "(max-width: 980px) and (prefers-reduced-motion: no-preference)",
-  reduced: "(prefers-reduced-motion: reduce)",
+  desktop: "(min-width: 981px)",
+  compact: "(max-width: 980px)",
 };
 
 export const landingProfiles = {

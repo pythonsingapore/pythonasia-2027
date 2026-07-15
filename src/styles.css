@@ -2799,37 +2799,3 @@ li + li {
   }
 
 }
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  [data-motion] {
-    opacity: 1 !important;
-    filter: none !important;
-  }
-
-  .floating-cranes {
-    opacity: 0.5 !important;
-  }
-
-  .cherry-bloom-layer,
-  .merlion-side-layer {
-    opacity: 0.2 !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .event-opening-flight {
-    display: none;
-  }
-
-}

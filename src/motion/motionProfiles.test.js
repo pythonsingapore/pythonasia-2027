@@ -9,8 +9,9 @@ import {
 } from "./motionProfiles.js";
 
 test("landing profiles define separate desktop and compact travel", () => {
-  assert.equal(LANDING_MEDIA.desktop, "(min-width: 981px) and (prefers-reduced-motion: no-preference)");
-  assert.equal(LANDING_MEDIA.compact, "(max-width: 980px) and (prefers-reduced-motion: no-preference)");
+  assert.equal(LANDING_MEDIA.desktop, "(min-width: 981px)");
+  assert.equal(LANDING_MEDIA.compact, "(max-width: 980px)");
+  assert.equal("reduced" in LANDING_MEDIA, false);
   assert.ok(landingProfiles.desktop.cranes.xPercent > landingProfiles.compact.cranes.xPercent);
   assert.ok(Math.abs(landingProfiles.desktop.cranes.yPercent) > Math.abs(landingProfiles.compact.cranes.yPercent));
 });
