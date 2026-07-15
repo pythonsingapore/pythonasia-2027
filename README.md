@@ -26,6 +26,7 @@ The local site is served at `http://127.0.0.1:5173/` by default.
 npm run dev      # Start the local development server
 npm test         # Run the motion and layout contract tests
 npm run build    # Create a production build in dist/
+npm run build:pages # Create the GitHub Pages build and route entries
 npm run preview  # Preview the production build locally
 ```
 
@@ -45,6 +46,11 @@ When changing animations or layout, run both the test suite and production build
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development and pull-request workflow.
+
+## Deployment
+
+The site deploys to GitHub Pages from `main` through `.github/workflows/deploy-pages.yml`.
+Repository administrators must select **GitHub Actions** under **Settings → Pages → Build and deployment** once. See [the GitHub Pages deployment guide](docs/deployment/github-pages.md) for the architecture and verification checklist.
 
 ## License
 
