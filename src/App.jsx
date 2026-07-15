@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -175,9 +176,7 @@ function LittleRedDotOrbit() {
 
     const backContext = backCanvas.getContext("2d");
     const frontContext = frontCanvas.getContext("2d");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let animationFrame = 0;
-    let animationStart = performance.now();
+    const animationStart = gsap.ticker.time;
     let width = 0;
     let height = 0;
 
@@ -275,45 +274,35 @@ function LittleRedDotOrbit() {
       context.restore();
     };
 
-    const renderOrbit = (timestamp) => {
+    const renderOrbit = (tickerTime) => {
       backContext.clearRect(0, 0, width, height);
       frontContext.clearRect(0, 0, width, height);
 
-      const elapsed = reducedMotion.matches ? 0 : timestamp - animationStart;
-      const angle = reducedMotion.matches ? 0.08 : ((elapsed % 5800) / 5800) * Math.PI * 2;
-      const breath = reducedMotion.matches ? 0.78 : 0.74 + Math.sin(elapsed / 620) * 0.12;
+      const elapsed = (tickerTime - animationStart) * 1000;
+      const angle = ((elapsed % 5800) / 5800) * Math.PI * 2;
+      const breath = 0.74 + Math.sin(elapsed / 620) * 0.12;
 
       drawOrbitArc(backContext, Math.PI, Math.PI * 2, breath * 0.52, 1.05);
       drawOrbitArc(frontContext, 0, Math.PI, breath, 1.45);
       drawOrbitArc(frontContext, 0.12, Math.PI * 0.88, breath * 0.24, 0.7, true);
       drawTail(angle);
       drawCore(Math.sin(angle) >= 0 ? frontContext : backContext, angle);
-
-      if (!reducedMotion.matches) animationFrame = window.requestAnimationFrame(renderOrbit);
     };
 
     const resize = () => {
       prepareCanvas(backCanvas, backContext);
       prepareCanvas(frontCanvas, frontContext);
-      if (reducedMotion.matches) renderOrbit(performance.now());
-    };
-
-    const restartMotion = () => {
-      window.cancelAnimationFrame(animationFrame);
-      animationStart = performance.now();
-      renderOrbit(animationStart);
+      renderOrbit(gsap.ticker.time);
     };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(frontCanvas);
-    reducedMotion.addEventListener?.("change", restartMotion);
     resize();
-    renderOrbit(animationStart);
+    gsap.ticker.add(renderOrbit);
 
     return () => {
-      window.cancelAnimationFrame(animationFrame);
+      gsap.ticker.remove(renderOrbit);
       resizeObserver.disconnect();
-      reducedMotion.removeEventListener?.("change", restartMotion);
     };
   }, []);
 
